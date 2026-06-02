@@ -1,0 +1,3 @@
+F:/university/Second/Semester2/Data Structure/Built by me/Postfix/cmake-build-debug/CMakeFiles/Postfix.dir
+F:/university/Second/Semester2/Data Structure/Built by me/Postfix/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/university/Second/Semester2/Data Structure/Built by me/Postfix/cmake-build-debug/CMakeFiles/rebuild_cache.dir
