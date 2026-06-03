@@ -38,37 +38,6 @@ void LinkedList::print() const
     cout << endl;
 }
 
-// Insert at beginning
-void LinkedList::push_front(int val)
-{
-    Node *newNode = new Node{val, head};
-    head = newNode;
-
-    // check if the list is empty
-    if (tail == NULL)
-        tail = newNode;
-
-    count++;
-}
-
-// Insert at end
-void LinkedList::push_back(int val)
-{
-    Node *newNode = new Node{val, NULL};
-
-    if (head == NULL)
-    {
-        head = tail = newNode;
-    }
-    else
-    {
-        tail->next = newNode;
-        tail = newNode;
-    }
-
-    count++;
-}
-
 // Search
 bool LinkedList::search(int val) const
 {

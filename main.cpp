@@ -1,14 +1,17 @@
 #include <iostream>
 #include "./Algorithms/Sorting_Algorithms/Sorting_Algorithms.cpp"
+#include "./Lists/Single_LL/SortedLL.cpp"
 using namespace std;
 
 int main()
 {
 
-    int *ptr = new int[7]{1, 2, 3, 4, 5, 6, 7};
-    int *temp = ptr;
-    cout << ptr[0] << endl;
-    delete[] temp;
-    cout << ptr[2] << endl;
+    Sorted_LinkedList ls;
+    ls.insert(5);
+    ls.insert(8);
+    ls.insert(2);
+    ls.insert(3);
+
+    ls.print();
     return 0;
 }

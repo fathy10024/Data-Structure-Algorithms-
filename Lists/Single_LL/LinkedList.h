@@ -12,7 +12,7 @@ struct Node
 
 class LinkedList
 {
-private:
+protected:
     Node *head;
     Node *tail;
     int count;
@@ -24,14 +24,15 @@ public:
     // Destructor
     ~LinkedList();
 
+    virtual void insert(int val) = 0;
     // Basic operations
     bool isEmpty() const;
     int length() const;
 
     void print() const;
 
-    void push_front(int val);
-    void push_back(int val);
+    // void push_front(int val);
+    // void push_back(int val);
 
     bool search(int val) const;
     void deleteNode(int val);
@@ -40,7 +41,7 @@ public:
     int back() const;
 
     void clear();
-    void remove(int val)
+    // void remove(int val);
 };
 
 #endif
