@@ -90,22 +90,22 @@ void LinkedList::deleteNode(int val)
     if (head == NULL)
         return;
 
-    Node *current = head;
-    Node *prev = NULL;
-
-    // لو أول عنصر
+    // IF AT FIRST
     if (head->data == val)
     {
         Node *temp = head;
         head = head->next;
-        delete temp;
 
         if (head == NULL)
             tail = NULL;
 
+        delete temp;
         count--;
         return;
     }
+
+    Node *current = head;
+    Node *prev = NULL;
 
     while (current != NULL && current->data != val)
     {
@@ -113,16 +113,16 @@ void LinkedList::deleteNode(int val)
         current = current->next;
     }
 
-    if (current != NULL)
-    {
-        prev->next = current->next;
+    if (current == NULL)
+        return;
 
-        if (current == tail)
-            tail = prev;
+    prev->next = current->next;
 
-        delete current;
-        count--;
-    }
+    if (current == tail)
+        tail = prev;
+
+    delete current;
+    count--;
 }
 
 // Front
