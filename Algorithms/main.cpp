@@ -4,7 +4,13 @@ using namespace std;
 
 int main()
 {
-    say_hello();
 
+    int arr[] = {5, 3, 9, 6, 8, 7, 2, 5};
+
+    Bubble_Sort(arr, 8);
+    for (int x : arr)
+    {
+        cout << x << " ";
+    }
     return 0;
 }
