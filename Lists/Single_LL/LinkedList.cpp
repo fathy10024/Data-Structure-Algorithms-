@@ -54,7 +54,7 @@ bool LinkedList::search(int val) const
 }
 
 // Delete node
-void LinkedList::deleteNode(int val)
+void LinkedList::remove(int val)
 {
     if (head == NULL)
         return;

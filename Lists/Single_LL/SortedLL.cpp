@@ -3,6 +3,9 @@
 class Sorted_LinkedList : public LinkedList
 {
 public:
+    // default constructor
+    Sorted_LinkedList() : LinkedList() {};
+
     void insert(int val)
     {
         Node *newNode = new Node{val, NULL};
@@ -30,5 +33,20 @@ public:
             tail = newNode;
 
         count++;
+    }
+
+    // copy constructor
+    Sorted_LinkedList(const Sorted_LinkedList &SL)
+    {
+        head = NULL;
+        tail = NULL;
+        count = 0;
+
+        Node *current = SL.head;
+        while (current != NULL)
+        {
+            insert(current->data);
+            current = current->next;
+        }
     }
 };

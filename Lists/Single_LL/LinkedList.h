@@ -21,6 +21,8 @@ public:
     // Constructor
     LinkedList();
 
+    // copy constructor
+
     // Destructor
     ~LinkedList();
 
@@ -31,17 +33,13 @@ public:
 
     void print() const;
 
-    // void push_front(int val);
-    // void push_back(int val);
-
     bool search(int val) const;
-    void deleteNode(int val);
+    void remove(int val);
 
     int front() const;
     int back() const;
 
     void clear();
-    // void remove(int val);
 };
 
 #endif

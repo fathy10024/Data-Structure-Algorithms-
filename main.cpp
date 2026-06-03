@@ -12,6 +12,7 @@ int main()
     ls.insert(2);
     ls.insert(3);
 
+    ls.remove(3);
     ls.print();
     return 0;
 }

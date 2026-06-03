@@ -3,6 +3,8 @@
 class UnSorted_LinkedList : public LinkedList
 {
 public:
+    UnSorted_LinkedList() : LinkedList() {}
+
     // Insert at beginning
     void push_front(int val)
     {
@@ -32,5 +34,20 @@ public:
         }
 
         count++;
+    }
+
+    // copy constructor
+    UnSorted_LinkedList(const UnSorted_LinkedList &USL)
+    {
+        head = NULL;
+        tail = NULL;
+        count = 0;
+
+        Node *current = USL.head;
+        while (current != NULL)
+        {
+            push_back(current->data);
+            current = current->next;
+        }
     }
 };
