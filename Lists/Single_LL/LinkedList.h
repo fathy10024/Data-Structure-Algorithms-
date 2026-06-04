@@ -40,6 +40,7 @@ public:
     int back() const;
 
     void clear();
+    void pop_back();
 };
 
 #endif

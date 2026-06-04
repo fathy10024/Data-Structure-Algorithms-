@@ -130,3 +130,29 @@ void LinkedList::clear()
     tail = NULL;
     count = 0;
 }
+
+void LinkedList::pop_back()
+{
+    if (head == NULL)
+    {
+        return;
+    }
+    if (head == tail)
+    {
+        delete head;
+        head = tail = NULL;
+        count--;
+        return;
+    }
+    Node *current = head;
+    Node *prev = NULL;
+    while (current->next != NULL)
+    {
+        prev = current;
+        current = current->next;
+    }
+    prev->next = NULL;
+    tail = prev;
+    delete current;
+    count--;
+}

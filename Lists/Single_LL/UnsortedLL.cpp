@@ -2,6 +2,11 @@
 
 class UnSorted_LinkedList : public LinkedList
 {
+private:
+    void insert(int val) override
+    {
+    }
+
 public:
     UnSorted_LinkedList() : LinkedList() {}
 
