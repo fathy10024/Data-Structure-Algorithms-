@@ -2,50 +2,52 @@
 #include <queue>
 using namespace std;
 
+template <typename T>
 struct Node
 {
-    int data;
-    Node *left;
-    Node *right;
+    T data;
+    Node<T> *left;
+    Node<T> *right;
 
-    Node(int val) : data(val), left(nullptr), right(nullptr) {}
+    Node(T val) : data(val), left(nullptr), right(nullptr) {}
 };
 
+template <typename T>
 class BT
 {
 protected:
-    Node *root;
+    Node<T> *root;
 
 public:
-    BT(int root_data)
+    BT(T root_data)
     {
-        root = new Node(root_data);
+        root = new Node<T>(root_data);
     }
 
-    Node *getRoot() { return root; }
+    Node<T> *getRoot() { return root; }
 
-    virtual void insert(int value)
+    virtual void insert(T value)
     {
         insertLevelOrder(root, value);
     }
 
 private:
-    void insertLevelOrder(Node *node, int value)
+    void insertLevelOrder(Node<T> *node, T value)
     {
         if (node == nullptr)
             return;
 
-        queue<Node *> q;
+        queue<Node<T> *> q;
         q.push(node);
 
         while (!q.empty())
         {
-            Node *curr = q.front();
+            Node<T> *curr = q.front();
             q.pop();
 
             if (curr->left == nullptr)
             {
-                curr->left = new Node(value);
+                curr->left = new Node<T>(value);
                 return;
             }
             else
@@ -55,7 +57,7 @@ private:
 
             if (curr->right == nullptr)
             {
-                curr->right = new Node(value);
+                curr->right = new Node<T>(value);
                 return;
             }
             else
@@ -67,7 +69,8 @@ private:
 
 public:
     // Traversals
-    void Preorder(Node *node)
+    // Using for Copying
+    void Preorder(Node<T> *node)
     {
         if (node == nullptr)
             return;
@@ -76,7 +79,8 @@ public:
         Preorder(node->right);
     }
 
-    void Inorder(Node *node)
+    // using in order
+    void Inorder(Node<T> *node)
     {
         if (node == nullptr)
             return;
@@ -85,7 +89,8 @@ public:
         Inorder(node->right);
     }
 
-    void Postorder(Node *node)
+    // using in deleting
+    void Postorder(Node<T> *node)
     {
         if (node == nullptr)
             return;
@@ -98,12 +103,13 @@ public:
     {
         if (root == nullptr)
             return;
-        queue<Node *> q;
+
+        queue<Node<T> *> q;
         q.push(root);
 
         while (!q.empty())
         {
-            Node *curr = q.front();
+            Node<T> *curr = q.front();
             q.pop();
             cout << curr->data << " ";
 
@@ -114,8 +120,18 @@ public:
         }
     }
 
+    void deleteTree(Node<T> *node)
+    {
+        if (node == nullptr)
+            return;
+        deleteTree(node->left);
+        deleteTree(node->right);
+        delete node;
+    }
+
     virtual ~BT()
     {
-        delete root;
+        deleteTree(root);
+        root = nullptr;
     }
 };

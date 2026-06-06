@@ -1,109 +1,130 @@
 #include <iostream>
+#include "../BT/BT.cpp" // أو BT.h لو فصلت الـ Header
 using namespace std;
 
 template <class T>
-class BSTNode
+class BST : public BT<T>
 {
-private:
-    T data;
-    BSTNode<T> *right;
-    BSTNode<T> *left;
-
 public:
-    BSTNode()
+    // Constructor
+    BST(T root_data) : BT<T>(root_data) {}
+
+    // ====================== Search ======================
+    bool search(const T &value)
     {
-        right = left = 0;
-    }
-    BSTNode(const T &data, BSTNode<T> *right = nullptr, BSTNode<T> *left = nullptr)
-    {
-        this.data = data;
-        this.right = right;
-        this.left = left;
+        return searchRec(this->root, value);
     }
 
-    T get_data()
+    // ====================== Insert ======================
+    void insert(const T &value) override
     {
-        return data;
-    }
-    BSTNode<T> *get_right() { return right; }
-    BSTNode<T> *get_Left() { return left; }
-
-    void set_Left(BSTNode<T> *l)
-    {
-        left = l;
-    }
-    void set_Right(BSTNode<T> *r)
-    {
-        right = r;
-    }
-};
-
-template <class T>
-class BST
-{
-protected:
-    BSTNode<T> *root;
-
-public:
-    void clear()
-    {
-        root = 0;
+        this->root = insertRec(this->root, value);
     }
 
-    bool Empty()
+    // ====================== Delete ======================
+    void remove(const T &value)
     {
-        return root == 0;
+        this->root = deleteRec(this->root, value);
     }
 
-    T *search(T &el)
-    {
-        BSTNode<T> *p = root;
-        while (p != 0)
-        {
-            if (el == p->get_data())
-            {
-                return p;
-            }
-            else if (el < p->get_data())
-            {
-                p = p->get_Left();
-            }
-            else
-            {
-                p = p->get_right();
-            }
-        }
-    }
-
-    // insertion
 private:
-    BSTNode<T> *insertNode(BSTNode<T> node, const T &value)
+    // =================== Private Helper Functions ===================
+
+    Node<T> *insertRec(Node<T> *node, const T &value)
     {
-        if (node == nullptr)
+        if (node = nullptr)
         {
-            return new BSTNode<T>(value);
+            return new Node<T>(value)
         }
 
         if (value < node->data)
         {
-            node->left = insertRec(node->left, value);
+            node->left = insertRec(node->left, value)
         }
-        else if (value > node->data)
+        else if (value > node->right)
         {
-            node->right = insertRec(node->right, value);
+            node->right = insert(node->right, value)
         }
-        //
         return node;
     }
 
+    bool searchRec(Node<T> *node, const T &value)
+    {
+        if (node == nullptr)
+            return false;
+
+        if (value == node->data)
+            return true;
+        else if (value < node->data)
+            return searchRec(node->left, value);
+        else
+            return searchRec(node->right, value);
+    }
+
+    Node<T> *deleteRec(Node<T> *node, const T &value)
+    {
+        if (node == nullptr)
+            return nullptr;
+
+        if (value < node->data)
+            node->left = deleteRec(node->left, value);
+        else if (value > node->data)
+            node->right = deleteRec(node->right, value);
+        else
+        {
+            // Found the node to delete
+            // Case 1: No child or one child
+            if (node->left == nullptr)
+            {
+                Node<T> *temp = node->right;
+                delete node;
+                return temp;
+            }
+            else if (node->right == nullptr)
+            {
+                Node<T> *temp = node->left;
+                delete node;
+                return temp;
+            }
+
+            // Case 2: Two children → Get inorder successor
+            Node<T> *temp = minValueNode(node->right);
+            node->data = temp->data;
+            node->right = deleteRec(node->right, temp->data);
+        }
+        return node;
+    }
+
+    Node<T> *minValueNode(Node<T> *node)
+    {
+        Node<T> *current = node;
+        while (current && current->left != nullptr)
+            current = current->left;
+        return current;
+    }
+
 public:
-    // Delete
+    void Inorder()
+    {
+        this->Inorder(this->root);
+        cout << endl;
+    }
+
+    void Preorder()
+    {
+        this->Preorder(this->root);
+        cout << endl;
+    }
+
+    void Postorder()
+    {
+        this->Postorder(this->root);
+        cout << endl;
+    }
+
+    void LevelOrder()
+    {
+        this->LevelOrder();
+        cout << endl;
+    }
 };
-
-int main()
-{
-
-    cout << "Au Haga" << endl;
-
-    return 0;
-}

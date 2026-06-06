@@ -1,20 +1,17 @@
 #include <iostream>
 #include "./Algorithms/Sorting_Algorithms/Sorting_Algorithms.cpp"
-#include "./Stack/Stack Apps.cpp"
-#include "./Stack/LLStack.cpp"
+#include "./Lists/Single_LL/UnsortedLL.cpp"
+#include "./Heap/heap.cpp"
 using namespace std;
 
 int main()
 {
-    LLStack ls;
-    ls.push(5);
-    ls.push(8);
-    ls.push(15);
+    int a[8] = {10, 2, 65, 28, 21, 89, 6, 66};
 
-    while (!ls.isEmpty())
+    heap_sort(a, 8);
+    for (int i : a)
     {
-        cout << ls.top() << endl;
-        ls.pop();
+        cout << i << " ";
     }
 
     return 0;
